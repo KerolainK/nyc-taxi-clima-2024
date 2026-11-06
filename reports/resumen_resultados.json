@@ -1,0 +1,130 @@
+{
+  "n": 576606,
+  "poblacion_viajes_validos_estimada": 39571896.90992,
+  "duracion_media_min": 16.940666031654732,
+  "duracion_mediana_min": 13.1,
+  "distancia_media_km": 5.517378232564559,
+  "tarifa_mediana_usd": 14.2,
+  "importe_medio_usd": 28.671465708154315,
+  "tarjeta_porcentaje": 76.09966818742751,
+  "propina_agregada_pct_tarifa_tarjeta": 22.092060360126137,
+  "duracion_min": {
+    "media": 16.940666031654732,
+    "p01": 2.05,
+    "p25": 8.0,
+    "mediana": 13.1,
+    "p75": 21.233333333333334,
+    "p99": 70.0
+  },
+  "distancia_km": {
+    "media": 5.517378232564559,
+    "p01": 0.45061632000000007,
+    "p25": 1.7219980800000003,
+    "mediana": 2.8968192000000004,
+    "p75": 5.4717696,
+    "p99": 32.2673472
+  },
+  "fare_amount": {
+    "media": 19.816921835807406,
+    "p01": 4.4,
+    "p25": 9.3,
+    "mediana": 14.2,
+    "p75": 22.6,
+    "p99": 77.2
+  },
+  "total_amount": {
+    "media": 28.671465708154315,
+    "p01": 9.1,
+    "p25": 16.0,
+    "mediana": 21.23,
+    "p75": 30.72,
+    "p99": 104.88
+  },
+  "velocidad_kmh": {
+    "media": 17.504152619094025,
+    "p01": 3.9818820618556714,
+    "p25": 11.04581526728972,
+    "mediana": 14.91924051502146,
+    "p75": 20.592914483342888,
+    "p99": 55.456909876755546
+  },
+  "propina_pct_tarifa": {
+    "media": 25.742766495121977,
+    "p01": 0.0,
+    "p25": 20.0,
+    "mediana": 25.88235294117647,
+    "p75": 30.396584286961225,
+    "p99": 53.10344827586207
+  },
+  "modelos": [
+    {
+      "modelo": "Volumen diario estimado",
+      "beta": 0.02547899746392183,
+      "efecto": 2.580636150908119,
+      "ic95_inferior": -0.36125081219574523,
+      "ic95_superior": 5.609383888301388,
+      "unidad": "%",
+      "p_sin_ajustar": 0.08612638594689592,
+      "n_dias": 365,
+      "r2": 0.488374201109655,
+      "formula": "np.log(viajes_estimados) ~ lluvia_num + temperatura_c + nieve_num + C(mes) + C(dia_semana)",
+      "p_holm": 0.25837915784068777
+    },
+    {
+      "modelo": "Duracion media diaria",
+      "beta": 0.008989705210857696,
+      "efecto": 0.9030233966900866,
+      "ic95_inferior": -0.42057315872401496,
+      "ic95_superior": 2.2442130222500585,
+      "unidad": "%",
+      "p_sin_ajustar": 0.18208091603477772,
+      "n_dias": 365,
+      "r2": 0.6427285037573104,
+      "formula": "np.log(duracion_media) ~ lluvia_num + temperatura_c + nieve_num + np.log(distancia_media) + C(mes) + C(dia_semana)",
+      "p_holm": 0.36416183206955544
+    },
+    {
+      "modelo": "Propina diaria sobre tarifa (tarjeta)",
+      "beta": 0.06953871576726636,
+      "efecto": 0.06953871576726636,
+      "ic95_inferior": -0.036856320883826246,
+      "ic95_superior": 0.17593375241835896,
+      "unidad": "puntos porcentuales",
+      "p_sin_ajustar": 0.20018925395721443,
+      "n_dias": 365,
+      "r2": 0.4771590783678563,
+      "formula": "propina_pct ~ lluvia_num + temperatura_c + nieve_num + C(mes) + C(dia_semana)",
+      "p_holm": 0.36416183206955544
+    }
+  ],
+  "dias_lluvia": 138,
+  "dias_sin_lluvia": 227,
+  "sensibilidad": {
+    "duracion_max_120min": {
+      "n": 576393,
+      "efecto_lluvia_pct": 2.574396024493913
+    }
+  },
+  "dias_extremos": [
+    {
+      "fecha_utc": "2024-12-14",
+      "viajes_estimados": 155612.29781999998
+    },
+    {
+      "fecha_utc": "2024-12-13",
+      "viajes_estimados": 154951.99104
+    },
+    {
+      "fecha_utc": "2024-12-12",
+      "viajes_estimados": 147395.14677999998
+    },
+    {
+      "fecha_utc": "2024-12-07",
+      "viajes_estimados": 146368.0029
+    },
+    {
+      "fecha_utc": "2024-11-16",
+      "viajes_estimados": 146000.61476
+    }
+  ]
+}

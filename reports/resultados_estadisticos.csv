@@ -1,0 +1,4 @@
+modelo,beta,efecto,ic95_inferior,ic95_superior,unidad,p_sin_ajustar,n_dias,r2,formula,p_holm
+Volumen diario estimado,0.02547899746392183,2.580636150908119,-0.36125081219574523,5.609383888301388,%,0.08612638594689592,365,0.488374201109655,np.log(viajes_estimados) ~ lluvia_num + temperatura_c + nieve_num + C(mes) + C(dia_semana),0.25837915784068777
+Duracion media diaria,0.008989705210857696,0.9030233966900866,-0.42057315872401496,2.2442130222500585,%,0.18208091603477772,365,0.6427285037573104,np.log(duracion_media) ~ lluvia_num + temperatura_c + nieve_num + np.log(distancia_media) + C(mes) + C(dia_semana),0.36416183206955544
+Propina diaria sobre tarifa (tarjeta),0.06953871576726636,0.06953871576726636,-0.036856320883826246,0.17593375241835896,puntos porcentuales,0.20018925395721443,365,0.4771590783678563,propina_pct ~ lluvia_num + temperatura_c + nieve_num + C(mes) + C(dia_semana),0.36416183206955544

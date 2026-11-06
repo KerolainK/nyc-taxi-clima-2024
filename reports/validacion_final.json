@@ -1,0 +1,47 @@
+{
+  "filas_brutas": 600000,
+  "filas_finales": 576606,
+  "columnas_finales": 44,
+  "dias_utc_completos": 365,
+  "meses_archivo": 12,
+  "sin_correspondencia_meteo": 0,
+  "horas_DST_ambiguas_o_inexistentes_excluidas": 120,
+  "filas_dias_UTC_parciales_excluidas": 1484,
+  "coincidencias_exactas_conservadas": 0,
+  "registros_fuente_TLC": 41169720,
+  "reglas": [
+    {
+      "regla": "Fecha fuera del mes y ano de origen",
+      "incidencias": 2,
+      "exclusiones_adicionales": 2
+    },
+    {
+      "regla": "Duracion no positiva, ausente o superior a 180 min",
+      "incidencias": 592,
+      "exclusiones_adicionales": 592
+    },
+    {
+      "regla": "Distancia no positiva, ausente o superior a 100 millas",
+      "incidencias": 11455,
+      "exclusiones_adicionales": 11270
+    },
+    {
+      "regla": "Tarifa o importe no positivo",
+      "incidencias": 10666,
+      "exclusiones_adicionales": 9789
+    },
+    {
+      "regla": "Propina negativa o ausente",
+      "incidencias": 16,
+      "exclusiones_adicionales": 0
+    },
+    {
+      "regla": "Velocidad superior a 100 mph",
+      "incidencias": 182,
+      "exclusiones_adicionales": 137
+    }
+  ],
+  "muestreo": "50.000 filas aleatorias de cada mes, sin reemplazo, semilla 202400+mes; pesos N_mes/50.000",
+  "fecha_inicio_utc": "2024-01-02",
+  "fecha_fin_utc": "2024-12-31"
+}

@@ -1,0 +1,7 @@
+regla,incidencias,exclusiones_adicionales
+Fecha fuera del mes y ano de origen,2,2
+"Duracion no positiva, ausente o superior a 180 min",592,592
+"Distancia no positiva, ausente o superior a 100 millas",11455,11270
+Tarifa o importe no positivo,10666,9789
+Propina negativa o ausente,16,0
+Velocidad superior a 100 mph,182,137
