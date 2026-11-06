@@ -1,28 +1,38 @@
 {
-  "total": 39571896.909919865,
-  "rows": 2810,
+  "total": 39571896.90991967,
+  "rows": 4810,
   "tests": [
     {
       "month": "Enero",
       "borough": "Manhattan",
       "rain": "Lluvia indicada",
-      "expected": 1005007.5360000001,
-      "actual": 1005007.5360000001
+      "expected": 1005007.5360000004,
+      "actual": 1005007.5360000004
     },
     {
       "month": "Julio",
       "borough": "Todos",
       "rain": "Todos",
-      "expected": 2967057.562900002,
-      "actual": 2967057.562900002
+      "expected": 2967057.562900004,
+      "actual": 2967057.562900004
     },
     {
       "month": "Todos",
       "borough": "Queens",
       "rain": "Sin indicador",
-      "expected": 2291729.0083399992,
-      "actual": 2291729.0083399992
+      "expected": 2291729.008339999,
+      "actual": 2291729.008339999
+    },
+    {
+      "day": "Lun-vie",
+      "expected": 28475945.178439803,
+      "actual": 28475945.178439803
+    },
+    {
+      "day": "Fin semana",
+      "expected": 11095951.731479952,
+      "actual": 11095951.731479952
     }
   ],
-  "inspection": "{\"kind\":\"table\",\"sheet\":\"Dashboard\",\"address\":\"B10:L15\",\"rows\":6,\"cols\":11,\"values\":[[\"Viajes válidos estimados\",null,null,null,\"Duración media (min)\",null,null,null,null,\"Importe medio (USD)\",null],[39571896.909919865,null,null,null,16.940666031654796,null,null,null,null,28.671465708154344,null],[null,null,null,null,null,null,null,null,null,null,null],[null,null,null,null,null,null,null,null,null,null,null],[\"Filas de la muestra\",null,null,null,\"Distancia media (km)\",null,null,null,null,\"Propina / tarifa (tarjeta)\",null],[576606,null,null,null,5.517378232564585,null,null,null,null,0.22092060360126042,null]]}"
+  "inspection": "{\"kind\":\"table\",\"sheet\":\"Dashboard\",\"address\":\"B10:L15\",\"rows\":6,\"cols\":11,\"values\":[[\"Viajes válidos estimados\",null,null,null,\"Duración media (min)\",null,null,null,null,\"Importe medio (USD)\",null],[39571896.90991967,null,null,null,16.940666031654864,null,null,null,null,28.67146570815454,null],[null,null,null,null,null,null,null,null,null,null,null],[null,null,null,null,null,null,null,null,null,null,null],[\"Filas de la muestra\",null,null,null,\"Distancia media (km)\",null,null,null,null,\"Propina / tarifa (tarjeta)\",null],[576606,null,null,null,5.517378232564604,null,null,null,null,0.22092060360126145,null]]}"
 }

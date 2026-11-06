@@ -1,0 +1,100 @@
+[
+  {
+    "titulo": "1. Pregunta y unidad de análisis",
+    "pregunta": "¿Qué queremos comprender?",
+    "metodo": "Relacionar el contexto meteorológico con actividad registrada, duración y propinas. Cada fila final representa un viaje; no una persona ni una petición de transporte.",
+    "razon": "Primero definimos la pregunta y la unidad. Así evitamos interpretar número de viajes como demanda total o usuarios únicos.",
+    "limite": "La actividad observada puede cambiar por oferta de taxis, calendario o composición de recorridos, además del clima."
+  },
+  {
+    "titulo": "2. Dos fuentes y una clave temporal",
+    "pregunta": "¿Por qué unir TLC y NOAA?",
+    "metodo": "TLC describe viajes y NOAA describe días meteorológicos. Los unimos por fecha UTC después de convertir la hora local de recogida. La tabla de zonas solo traduce códigos.",
+    "razon": "Dos fuentes añaden dimensiones complementarias. No duplicamos archivos de una misma fuente para simular dos productores independientes.",
+    "limite": "Una estación y un resumen diario no miden la exposición exacta de cada recorrido."
+  },
+  {
+    "titulo": "3. Muestreo y pesos",
+    "pregunta": "¿Por qué 50.000 filas por mes?",
+    "metodo": "Una muestra antes de limpiar hace el proyecto manejable y conserva errores reales. Cada mes usa una semilla fija. El peso de una fila es N del archivo mensual / 50.000.",
+    "razon": "Los meses tienen el mismo tamaño muestral y diferente volumen real. Sin pesos, un mes pequeño contaría tanto como uno grande.",
+    "limite": "Los totales son estimaciones de registros que superan los filtros, no recuentos exactos. El muestreo introduce incertidumbre."
+  },
+  {
+    "titulo": "4. Limpieza con criterio de negocio",
+    "pregunta": "¿Por qué excluir determinados registros?",
+    "metodo": "Se exige inicio dentro del mes, duración y distancia positivas y plausibles, tarifa e importe positivos y velocidad no extrema. Se registran incidencias y exclusiones adicionales.",
+    "razon": "El alcance es actividad facturada positiva y plausible. Una tarifa negativa puede ser un ajuste legítimo; se excluye del alcance, no se declara automáticamente un dato falso.",
+    "limite": "Los umbrales pueden cambiar resultados. Por eso se conserva el extracto bruto y se prueba un límite alternativo de duración."
+  },
+  {
+    "titulo": "5. Ausencia frente a cero",
+    "pregunta": "¿Qué hacemos cuando falta información?",
+    "metodo": "No se inventan pasajeros ni precipitación. Los códigos NOAA de ausencia se convierten en nulos. La propina porcentual solo se calcula para tarjeta.",
+    "razon": "Un cero es una observación; un nulo indica información no disponible o no aplicable. Confundirlos sesga medias y comparaciones.",
+    "limite": "Sin indicador de lluvia significa no indicado o no reportado. No prueba que el día fuese seco."
+  },
+  {
+    "titulo": "6. Tiempo, cambios de hora y límites",
+    "pregunta": "¿Por qué no unir directamente las fechas?",
+    "metodo": "Nueva York usa hora local con horario de verano y NOAA usa UTC. Se convierten horas; las ambiguas/inexistentes se excluyen y se retiran los días UTC parciales de los extremos.",
+    "razon": "La conversión impide asignar el clima del día equivocado a parte de los viajes nocturnos. La comparación diaria requiere periodos completos.",
+    "limite": "El día UTC no coincide con el civil local. Los perfiles por hora usan hora local, pero la exposición meteorológica sigue siendo UTC."
+  },
+  {
+    "titulo": "7. Uniones sin multiplicar viajes",
+    "pregunta": "¿Cómo sabemos que la combinación es correcta?",
+    "metodo": "Se comprueba unicidad de la fecha en NOAA y del código en la tabla de zonas. Las uniones son muchos-a-uno y se exige que no aumente el número de viajes.",
+    "razon": "Una unión muchos-a-muchos puede inflar el dataset y los totales sin añadir observaciones reales. El tamaño mínimo no justifica esa multiplicación.",
+    "limite": "Tener correspondencia no garantiza que una estación represente bien cada barrio."
+  },
+  {
+    "titulo": "8. Fórmulas y medias ponderadas",
+    "pregunta": "¿Qué calcula Excel?",
+    "metodo": "SUMIFS suma solo filas que cumplen filtros. Viajes estimados = suma de pesos. Media de duración = suma de peso × minutos / suma de pesos. El mismo criterio se aplica a distancia e importe.",
+    "razon": "La base agregada conserva sumas suficientes; por ello Excel reproduce los indicadores del dataset completo sin cargar medio millón de filas en la vista.",
+    "limite": "No se promedian medias de grupos sin ponderarlas. Un grupo de diez viajes no debe contar igual que uno de diez mil."
+  },
+  {
+    "titulo": "9. Razón de sumas frente a media de razones",
+    "pregunta": "¿Cómo interpretar el porcentaje de propina?",
+    "metodo": "En tarjeta, se divide suma ponderada de propinas por suma ponderada de tarifas base. El resultado expresa dólares de propina por dólar de tarifa.",
+    "razon": "La media de porcentajes individuales responde a otra pregunta: porcentaje de un viaje típico. Puede diferir de la razón agregada porque cada tarifa tiene distinto tamaño.",
+    "limite": "No es el porcentaje sobre importe total, ni incluye propinas en efectivo, ni equivale a ingreso neto del conductor."
+  },
+  {
+    "titulo": "10. Comparaciones justas",
+    "pregunta": "¿Por qué normalizar los perfiles?",
+    "metodo": "Los grupos de lluvia contienen distinto número de días. En perfiles diarios se divide por exposición. En la matriz semanal, cada columna se expresa como porcentaje de sus propios viajes y suma 100%.",
+    "razon": "Comparar totales de categorías con distinta cantidad de días o viajes puede fabricar una diferencia mecánica. La normalización aclara qué patrón comparamos.",
+    "limite": "La comparación descriptiva no ajusta todos los factores. No se interpreta como efecto del clima."
+  },
+  {
+    "titulo": "11. Unidad estadística y modelos",
+    "pregunta": "¿Por qué 365 observaciones y no 576.606?",
+    "metodo": "Miles de viajes comparten el mismo clima diario. Los modelos usan una fila por día y ajustan calendario, temperatura y nieve; duración incluye distancia media.",
+    "razon": "Tratar cada viaje como exposición meteorológica independiente exageraría la precisión. El tamaño para esa inferencia es el número de días.",
+    "limite": "Los modelos son agregados y observacionales. No identifican el efecto individual ni causal de la lluvia."
+  },
+  {
+    "titulo": "12. Diagnóstico y sensibilidad",
+    "pregunta": "¿Cómo comprobamos que la conclusión no depende de una elección?",
+    "metodo": "Se examinan residuos, autocorrelación, heterocedasticidad e influencia. Se informan HAC 3/7/14, festivos, exclusión de días influyentes, estacionalidad flexible y volumen del día anterior.",
+    "razon": "HAC cambia la incertidumbre; no elimina la dependencia de los residuos ni corrige automáticamente una especificación incompleta. El modelo dinámico cambia la interpretación al condicionar a actividad previa.",
+    "limite": "Las sensibilidades son exploratorias. Excluir cinco días produce un p nominal inferior a 0,05; no se selecciona ese modelo como confirmación ni se esconden las otras especificaciones."
+  },
+  {
+    "titulo": "13. Resultado y decisión",
+    "pregunta": "¿Qué permite recomendar el análisis?",
+    "metodo": "El perfil anual alcanza su máximo a las 18:00. Manhattan concentra aproximadamente el 88,8% de las recogidas y las diez primeras zonas el 37,9%. Son prioridades para monitorizar actividad.",
+    "razon": "Los patrones ayudan a decidir dónde y cuándo profundizar. Las asociaciones de lluvia son pequeñas e inestables entre especificaciones, por lo que no justifican prometer un incremento fijo.",
+    "limite": "La muestra se limita a taxis amarillos y un año. No representa toda la movilidad ni solicitudes no atendidas."
+  },
+  {
+    "titulo": "14. Qué cambia al usar los filtros",
+    "pregunta": "¿Qué queda fijo y qué se recalcula?",
+    "metodo": "Dashboard filtra mes, borough, lluvia y tipo de día. Patrones muestra la vista anual completa. Robustez conserva los modelos diarios del estudio; no recalcula regresiones al mover selectores.",
+    "razon": "Separar exploración interactiva y modelos estimados evita presentar una comparación de dos medias como si fuera un coeficiente ajustado.",
+    "limite": "Lun-vie es una categoría de calendario; incluye festivos entre semana. Fin semana significa sábado y domingo, no comportamiento laboral real."
+  }
+]
