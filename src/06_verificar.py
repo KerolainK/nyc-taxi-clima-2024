@@ -28,12 +28,12 @@ for i,c in enumerate(nb['cells']):
         assert all(o['output_type']!='error' for o in c['outputs'])
 nb_path.write_text(json.dumps(nb,ensure_ascii=False,indent=1),encoding='utf-8')
 X={'s':'http://schemas.openxmlformats.org/spreadsheetml/2006/main','c':'http://schemas.openxmlformats.org/drawingml/2006/chart'}
-book=ROOT/'dashboard/Dashboard_Taxis_Clima_2024.xlsx'
+book=ROOT/'dashboard/Dashboard_Taxis_Clima_2024_v2.xlsx'
 with zipfile.ZipFile(book) as z:
     charts=[x for x in z.namelist() if '/charts/chart' in x and x.endswith('.xml')]
-    assert len(charts)==4
+    assert len(charts)==5
     sheet=ET.fromstring(z.read('xl/worksheets/sheet1.xml'))
-    assert len(sheet.findall('.//s:dataValidation',X))==3
+    assert len(sheet.findall('.//s:dataValidation',X))==4
     cache={c.attrib['r']:c.find('s:v',X).text if c.find('s:v',X) is not None else None for c in sheet.findall('.//s:c',X)}
     assert abs(float(cache['B11'])-s['poblacion_viajes_validos_estimada'])<.1
     assert abs(float(cache['B15'])-len(a))<.1
@@ -44,9 +44,11 @@ with zipfile.ZipFile(book) as z:
         assert xml.findall('.//c:f',X)
         if xml.find('.//c:barChart',X) is not None:
             assert any(m.attrib.get('val')=='0' for m in xml.findall('.//c:min',X)),chart
-for rel in ['README.md','requirements.txt','reports/Memoria_Taxis_Clima_2024.pdf','reports/Guion_defensa.md','data/raw/taxi_2024_extracto_sin_limpiar.csv.gz','data/raw/noaa_lga_2024.csv']:
+for rel in ['README.md','requirements.txt','reports/Memoria_Taxis_Clima_2024_v2.pdf','reports/Guion_defensa.md','data/raw/taxi_2024_extracto_sin_limpiar.csv.gz','data/raw/noaa_lga_2024.csv']:
     assert (ROOT/rel).is_file(),rel
-result={'estado':'Verificaciones superadas','filas_finales':len(a),'columnas_finales':len(a.columns),'dias':len(daily),'graficos_excel':4,'selectores_excel':3,'celdas_notebook_ejecutadas':sum(c['cell_type']=='code' for c in nb['cells']),'total_dashboard_conciliado':float(cache['B11']),'poblacion_estimada':True,'limite':'Prueba de formulas con motor de generacion y del XML exportado; no sesion nativa de Excel.'}
+assert len(pd.read_csv(ROOT/'reports/sensibilidad_ampliada.csv'))==8
+assert (ROOT/'reports/Guia_razonamiento.md').is_file()
+result={'estado':'Verificaciones superadas','filas_finales':len(a),'columnas_finales':len(a.columns),'dias':len(daily),'graficos_excel':5,'selectores_excel':4,'celdas_notebook_ejecutadas':sum(c['cell_type']=='code' for c in nb['cells']),'total_dashboard_conciliado':float(cache['B11']),'poblacion_estimada':True,'limite':'Prueba de formulas con motor de generacion y del XML exportado; no sesion nativa de Excel.'}
 (ROOT/'reports/verificacion_entrega.json').write_text(json.dumps(result,ensure_ascii=False,indent=2),encoding='utf-8')
 print(json.dumps(result,ensure_ascii=False,indent=2))
 
