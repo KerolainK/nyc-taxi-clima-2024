@@ -5,7 +5,9 @@ Repositorio público: https://github.com/KerolainK/nyc-taxi-clima-2024
 
 Proyecto de análisis exploratorio con **Python y Pandas**, notebook ejecutado, **dashboard operativo en Excel** e informe explicativo en español.
 
-![Dashboard](dashboard/vista_dashboard.png)
+![Resumen del estudio](reports/figuras/00_portada_visual.png)
+
+![Dashboard interactivo](dashboard/vista_dashboard.png)
 
 ## Pregunta y resultado principal
 
@@ -13,16 +15,44 @@ Proyecto de análisis exploratorio con **Python y Pandas**, notebook ejecutado, 
 
 El conjunto final contiene **576.606 filas y 44 columnas**, procedentes de dos productores independientes: NYC TLC y NOAA. Abarca **365 días UTC completos**, del 2 de enero al 31 de diciembre de 2024.
 
-Los modelos diarios estiman una asociación con lluvia del **+2,58%** para volumen (IC95% -0,36% a +5,61%), **+0,90%** para duración (-0,42% a +2,24%) y **+0,070 puntos porcentuales** para propinas en tarjeta (-0,037 a +0,176). Ninguna de las tres pruebas alcanza 0,05 después de Holm. **No se demuestra ausencia de efecto ni causalidad**. Los intervalos del 95% son puntuales; Holm se aplica a los p-valores.
+Los modelos diarios estiman una asociación con lluvia del **+2,58%** para volumen (IC95% -0,36% a +5,61%), **+0,90%** para duración (-0,42% a +2,24%) y **+0,070 puntos porcentuales** para propinas en tarjeta (-0,037 a +0,176). Ninguna de las tres pruebas alcanza 0,05 después de Holm. **No se demuestra ausencia de efecto ni causalidad**. La ampliación encuentra fuerte dependencia residual en el modelo principal. Un modelo dinámico estima +0,62% (IC95% -1,21% a +2,49%). Excluir cinco días influyentes produce un p nominal de 0,036: esta sensibilidad se informa como exploratoria y evita una conclusión categórica. Los intervalos del 95% son puntuales; Holm se aplica a los p-valores.
 
 Otros resultados ponderados: duración mediana de **13,1 min**, tarifa base mediana de **14,2 USD** y propina agregada sobre tarifa en tarjeta del **22,1%**. El importe medio registrado es **28,7 USD**, sin incluir propinas en efectivo.
 
+## Lo que cuenta el análisis
+
+| Hallazgo | Lectura útil | Límite |
+|---|---|---|
+| Máximo de recogidas a las **18:00** | Identifica una franja para monitorizar actividad | No mide solicitudes no atendidas |
+| **88,8%** de recogidas en Manhattan | Delimita el mercado de taxis amarillos observado | No representa toda la movilidad de NYC |
+| Las diez primeras zonas concentran **37,9%** | Prioriza zonas para un seguimiento más detallado | No prueba rentabilidad ni falta de oferta |
+| La asociación de lluvia depende de la especificación | Exige mirar intervalos, residuos y sensibilidad | No justifica un incremento fijo ni causal |
+
+## Cómo entender lo que hay detrás
+
+1. Leer [la guía de razonamiento](reports/Guia_razonamiento.md): para cada paso explica pregunta, qué se hizo, por qué y qué no permite concluir.
+2. Seguir el [notebook ejecutado](notebooks/EDA_Taxis_Clima_2024.ipynb), que conecta datos con cálculos, modelos y resultados reales.
+3. En Excel, abrir **Calculos** para ver fórmulas y explicaciones cercanas; **Razonamiento** desarrolla catorce decisiones y un ejemplo de ponderación.
+4. Consultar **Robustez**: muestra todas las sensibilidades, no solo la que da el menor p-valor. **Patrones** contiene una matriz semanal y las zonas principales.
+5. Leer la memoria para unir hallazgos, método, aplicaciones y límites.
+
+La cadena de trazabilidad es: **registro fuente → limpieza → peso → fecha UTC → unión → agregado → fórmula → interpretación**.
+
+### Qué aporta la versión ampliada
+
+- Cuatro filtros y siete hojas de Excel, con explicaciones y alcance declarado.
+- Matriz horaria por día de semana, ranking de zonas y perfiles normalizados.
+- Ocho especificaciones de sensibilidad; diagnósticos de residuos, autocorrelación, heterocedasticidad e influencia.
+- Modelo con tendencia estacional flexible y modelo condicionado al volumen anterior, tratados como análisis exploratorios.
+- Guía de razonamiento compartida por Excel, notebook, memoria y preparación de la defensa.
+
 ## Abrir primero
 
-- [Memoria completa: 13 páginas](reports/Memoria_Taxis_Clima_2024.pdf)
-- [Dashboard de Excel](dashboard/Dashboard_Taxis_Clima_2024.xlsx)
+- [Memoria explicativa ampliada](reports/Memoria_Taxis_Clima_2024_v2.pdf)
+- [Dashboard de Excel](dashboard/Dashboard_Taxis_Clima_2024_v2.xlsx)
 - [Notebook ejecutado](notebooks/EDA_Taxis_Clima_2024.ipynb)
 - [Guion de presentación y preguntas de defensa](reports/Guion_defensa.md)
+- [Guía: por qué se hizo cada paso](reports/Guia_razonamiento.md)
 - [Diccionario de las 44 columnas](reports/diccionario_datos.csv)
 
 ## Fuentes: las dos están catalogadas en data.gov
@@ -54,13 +84,27 @@ Los archivos mensuales completos se descargan con el script 00 y se conservan lo
 
 ## Dashboard operativo
 
-Abrir `dashboard/Dashboard_Taxis_Clima_2024.xlsx` y cambiar las celdas amarillas de **Mes**, **Borough de origen** e **Indicador de lluvia**. Los seis indicadores y cuatro gráficos se recalculan con fórmulas de Excel.
+Abrir `dashboard/Dashboard_Taxis_Clima_2024_v2.xlsx` y cambiar las celdas amarillas de **Mes**, **Borough de origen**, **Indicador de lluvia** y **Tipo de día**. Los seis indicadores y cuatro gráficos de Dashboard se recalculan con fórmulas de Excel. Se añade el filtro de tipo de día (Lun-vie / Fin semana), una hoja de patrones anuales y una hoja con modelos y sensibilidad.
 
 - El volumen es una **estimación ponderada** de viajes válidos, no un conteo exacto.
 - Las medias son razones de sumas ponderadas. La propina se restringe a pagos con tarjeta.
-- La hoja Datos contiene 2.810 agregados que recogen todas las filas del conjunto final; no es una muestra adicional.
+- La hoja Datos contiene 4.810 agregados que recogen todas las filas del conjunto final; no es una muestra adicional.
 - Los filtros consultan la base incluida. Para añadir nuevas descargas hay que regenerar la base y reconstruir el libro.
 - Se han contrastado el total y tres combinaciones de filtros con cálculos independientes en `dashboard/verificacion_excel.json`. Se comprobaron las fórmulas con el motor de generación, referencias y estructura del Excel exportado. No se afirma una prueba en una sesión nativa de Microsoft Excel.
+
+### Las siete hojas
+
+| Hoja | Para qué sirve | Alcance |
+|---|---|---|
+| Dashboard | Explorar indicadores con cuatro filtros | Selección activa |
+| Patrones | Ritmo semanal, zonas y perfiles relativos | Año completo |
+| Robustez | Intervalos, sensibilidades y diagnósticos | Modelos diarios del estudio |
+| Calculos | Fórmulas, sumas y explicación de cada bloque | Soporte del dashboard |
+| Razonamiento | Pregunta, método, motivo y límite de cada decisión | Guía metodológica |
+| Datos | Agregados trazables de todas las filas finales | Base incluida |
+| Metodologia | Definiciones, fuentes y uso | Referencia |
+
+La comparación de duración por lluvia conserva mes, borough y tipo de día; ignora solo el selector de lluvia para mostrar ambas categorías. Patrones y Robustez no recalculan modelos al mover filtros.
 
 ## Reproducir en VS Code
 
@@ -76,12 +120,13 @@ Activar el entorno virtual y ejecutar:
 python -m pip install -r requirements.txt
 python src/01_preparar.py
 python src/02_analizar.py
+python src/07_profundizar.py
 python src/03_memoria.py
 python src/05_notebook.py
 python src/06_verificar.py
 ```
 
-El notebook también se puede abrir con las extensiones Python y Jupyter de VS Code; usar un kernel que tenga las dependencias de requirements.txt. Sus siete celdas de código se entregan ejecutadas.
+El notebook también se puede abrir con las extensiones Python y Jupyter de VS Code; usar un kernel que tenga las dependencias de requirements.txt. Sus diez celdas de código se entregan ejecutadas.
 
 Para reconstruir el extracto a partir de las descargas completas:
 
@@ -113,7 +158,7 @@ El generador `src/04_dashboard.mjs` requiere Node.js y `@oai/artifact-tool`, dis
 - El indicador NOAA 0 significa **no indicado o no reportado**, no ausencia segura de lluvia. La estación LaGuardia no representa cada zona y la meteorología diaria no describe la lluvia exacta de cada viaje.
 - Los totales de precipitación NOAA pueden incluir parte del día anterior. No se convierten códigos de ausencia a cero.
 - La muestra estratificada requiere pesos. HAC describe incertidumbre en la serie diaria construida y no reemplaza una varianza completa de diseño de encuesta. Los resultados inferenciales son exploratorios.
-- No se incluyen festivos, eventos ni disponibilidad de taxis. Las regresiones agregadas no identifican efectos individuales o causales.
+- Los festivos se estudian en sensibilidades adicionales. No se incluyen todos los eventos ni la disponibilidad de taxis. Las regresiones agregadas no identifican efectos individuales o causales.
 - Las propinas en efectivo no están incluidas en los registros de propinas ni en el importe total. No se analiza ingreso neto del conductor.
 - TLC no publica un ID único de viaje. Se usa mes de archivo + fila fuente como clave de trazabilidad; no se inventan identificadores personales.
 
@@ -131,3 +176,8 @@ Atribución de datos: NYC TLC / NYC Open Data y NOAA / NCEI. La redistribución 
 
 
 El CSV final usa compresión XZ sin pérdida y el Parquet usa Zstandard; ambos conservan las mismas 576.606 filas y 44 columnas. La ordenación por fecha facilita la compresión y no modifica los valores ni los resultados.
+
+
+### Calendario auxiliar y diagnósticos
+
+El calendario federal 2024 se transcribe de una [publicación oficial de CBP](https://content.govdelivery.com/accounts/USDHSCBP/bulletins/38366be). Es una variable auxiliar de sensibilidad por fecha UTC, no una cobertura completa de fiestas locales. [Statsmodels documenta los diagnósticos](https://www.statsmodels.org/stable/stats.html). Los p-valores de sensibilidad son exploratorios; no se utilizan para seleccionar retrospectivamente una confirmación.

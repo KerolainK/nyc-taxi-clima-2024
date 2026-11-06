@@ -15,3 +15,6 @@ dashboard/*.ndjson
 
 data/processed/taxi_clima_final.csv.gz
 ~$*
+
+reports/Memoria_Taxis_Clima_2024.pdf
+dashboard/Dashboard_Taxis_Clima_2024.xlsx
