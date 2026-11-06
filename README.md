@@ -1,6 +1,8 @@
 # Nueva York en movimiento
 ## Viajes en taxi, clima y patrones de movilidad (2024)
 
+Repositorio público: https://github.com/KerolainK/nyc-taxi-clima-2024
+
 Proyecto de análisis exploratorio con **Python y Pandas**, notebook ejecutado, **dashboard operativo en Excel** e informe explicativo en español.
 
 ![Dashboard](dashboard/vista_dashboard.png)
@@ -87,7 +89,7 @@ Para reconstruir el extracto a partir de las descargas completas:
 python src/00_descargar.py
 ```
 
-Esta descarga requiere espacio para los doce archivos originales. Si cambia una publicación fuente, comparar su SHA-256 con el manifiesto entregado antes de esperar resultados idénticos. Los archivos `.csv.gz` son CSV comprimidos: Pandas los lee directamente. El dataset final también se incluye en Parquet.
+Esta descarga requiere espacio para los doce archivos originales. Si cambia una publicación fuente, comparar su SHA-256 con el manifiesto entregado antes de esperar resultados idénticos. Los archivos `.csv.gz` y `.csv.xz` son CSV comprimidos: Pandas los lee directamente. El dataset final también se incluye en Parquet.
 
 El generador `src/04_dashboard.mjs` requiere Node.js y `@oai/artifact-tool`, disponible en el entorno de autoría. Puede indicarse su módulo con `ARTIFACT_TOOL_MODULE`. Esta dependencia solo es necesaria para reconstruir el libro; **usar los filtros del Excel entregado no requiere Node ni Python**. Para regenerar el notebook se ejecutan realmente las celdas y se capturan sus salidas.
 
@@ -117,7 +119,7 @@ El generador `src/04_dashboard.mjs` requiere Node.js y `@oai/artifact-tool`, dis
 
 ## Correspondencia con la entrega
 
-Dos productores independientes; datos brutos adjuntos; dataset final con más de 50.000 filas y 20 columnas; limpieza profunda; análisis descriptivo y estadístico; visualización; dashboard operativo; memoria y README. El paquete está organizado para GitHub. **El enlace del repositorio remoto se añadirá después de completar su creación y publicación en GitHub.**
+Dos productores independientes; datos brutos adjuntos; dataset final con más de 50.000 filas y 20 columnas; limpieza profunda; análisis descriptivo y estadístico; visualización; dashboard operativo; memoria y README. El paquete está organizado para GitHub. **Repositorio público: https://github.com/KerolainK/nyc-taxi-clima-2024.**
 
 ## Referencias y atribución
 
@@ -126,3 +128,6 @@ Dos productores independientes; datos brutos adjuntos; dataset final con más de
 - [Statsmodels: covarianza robusta HAC](https://www.statsmodels.org/stable/generated/statsmodels.regression.linear_model.OLSResults.get_robustcov_results.html).
 
 Atribución de datos: NYC TLC / NYC Open Data y NOAA / NCEI. La redistribución y el uso se rigen por las condiciones de sus productores. El proyecto no es una publicación oficial de esos organismos.
+
+
+El CSV final usa compresión XZ sin pérdida y el Parquet usa Zstandard; ambos conservan las mismas 576.606 filas y 44 columnas. La ordenación por fecha facilita la compresión y no modifica los valores ni los resultados.

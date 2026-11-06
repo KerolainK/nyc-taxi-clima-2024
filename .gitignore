@@ -1,0 +1,17 @@
+.venv/
+__pycache__/
+.ipynb_checkpoints/
+data/raw/originales/
+data/raw/yellow_tripdata_2024-01.parquet
+data/raw/taxi_enero2024_original.csv.gz
+data/processed/*piloto*
+reports/*piloto*
+reports/source_validation.json
+reports/validacion_fuentes.json
+src/01_validar_piloto.py
+src/02_grafico_piloto.py
+dashboard/datos_dashboard.json
+dashboard/*.ndjson
+
+data/processed/taxi_clima_final.csv.gz
+~$*
