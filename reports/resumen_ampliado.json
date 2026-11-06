@@ -1,0 +1,221 @@
+{
+  "sensibilidad": [
+    {
+      "especificacion": "HAC 3 dias",
+      "efecto_pct": 2.58063615090745,
+      "ic95_inferior": -0.7067705642085663,
+      "ic95_superior": 5.976882541920787,
+      "p_exploratorio": 0.1252353775941093,
+      "n_dias": 365
+    },
+    {
+      "especificacion": "HAC 7 dias",
+      "efecto_pct": 2.58063615090745,
+      "ic95_inferior": -0.36125081219643346,
+      "ic95_superior": 5.609383888300741,
+      "p_exploratorio": 0.08612638594698045,
+      "n_dias": 365
+    },
+    {
+      "especificacion": "HAC 14 dias",
+      "efecto_pct": 2.58063615090745,
+      "ic95_inferior": -0.3227476001879164,
+      "ic95_superior": 5.5685892195068005,
+      "p_exploratorio": 0.08198402948433284,
+      "n_dias": 365
+    },
+    {
+      "especificacion": "Con festivos federales",
+      "efecto_pct": 2.5665984141997544,
+      "ic95_inferior": -0.0889683841450772,
+      "ic95_superior": 5.292748359434567,
+      "p_exploratorio": 0.05829660706079001,
+      "n_dias": 365
+    },
+    {
+      "especificacion": "Sin festivos ni dias adyacentes",
+      "efecto_pct": 2.0454264181550927,
+      "ic95_inferior": -0.0768047307098404,
+      "ic95_superior": 4.2127308359149485,
+      "p_exploratorio": 0.058984517967831315,
+      "n_dias": 334
+    },
+    {
+      "especificacion": "Sin cinco dias mas influyentes",
+      "efecto_pct": 2.2962233496454996,
+      "ic95_inferior": 0.15225761597973037,
+      "ic95_superior": 4.486085093811182,
+      "p_exploratorio": 0.03566326969684847,
+      "n_dias": 360
+    },
+    {
+      "especificacion": "Tendencia estacional flexible",
+      "efecto_pct": 1.485516635112282,
+      "ic95_inferior": -0.9732644190876432,
+      "ic95_superior": 4.005347912133627,
+      "p_exploratorio": 0.23864128597545597,
+      "n_dias": 365
+    },
+    {
+      "especificacion": "Con volumen del dia anterior",
+      "efecto_pct": 0.6221698591821629,
+      "ic95_inferior": -1.211990174163079,
+      "ic95_superior": 2.4903840559208366,
+      "p_exploratorio": 0.5087334148928537,
+      "n_dias": 364
+    }
+  ],
+  "diagnosticos": [
+    {
+      "modelo": "Volumen",
+      "durbin_watson": 0.5173752496449452,
+      "ljung_box_p7": 9.788822544874478e-70,
+      "ljung_box_p14": 1.3212448233674133e-88,
+      "breusch_pagan_p": 4.086464900619833e-07,
+      "max_cook": 0.07947240013234189,
+      "r2_ajustado": 0.4586285151276581,
+      "numero_condicion": 310.5816611203218
+    },
+    {
+      "modelo": "Duracion",
+      "durbin_watson": 1.213544519490321,
+      "ljung_box_p7": 2.4245301219761036e-12,
+      "ljung_box_p14": 7.42801138582815e-18,
+      "breusch_pagan_p": 0.00023220389671792347,
+      "max_cook": 0.10485216673667791,
+      "r2_ajustado": 0.6208547386812274,
+      "numero_condicion": 622.9132959338003
+    },
+    {
+      "modelo": "Volumen dinamico",
+      "durbin_watson": 1.839429621391574,
+      "ljung_box_p7": 0.1908380538503562,
+      "ljung_box_p14": 0.005475718083237823,
+      "breusch_pagan_p": 4.4051526225671506e-13,
+      "max_cook": 0.17349226172688045,
+      "r2_ajustado": 0.802470011132,
+      "numero_condicion": 1844.1690029821839
+    },
+    {
+      "modelo": "Propina",
+      "durbin_watson": 1.7766425549614395,
+      "ljung_box_p7": 0.08547983567502258,
+      "ljung_box_p14": 0.3637422625307304,
+      "breusch_pagan_p": 0.001741845137216017,
+      "max_cook": 0.12827917970596706,
+      "r2_ajustado": 0.4467613503659873,
+      "numero_condicion": 310.5816611203218
+    }
+  ],
+  "dias_influyentes": [
+    {
+      "fecha_utc": "2024-12-25",
+      "distancia_cook": 0.07947240013234189,
+      "residuo_estandarizado": -5.393342709288408,
+      "festivo": 1
+    },
+    {
+      "fecha_utc": "2024-12-26",
+      "distancia_cook": 0.07519144567718636,
+      "residuo_estandarizado": -4.981622628083702,
+      "festivo": 0
+    },
+    {
+      "fecha_utc": "2024-07-04",
+      "distancia_cook": 0.06775322046207577,
+      "residuo_estandarizado": -5.012513006025901,
+      "festivo": 1
+    },
+    {
+      "fecha_utc": "2024-11-29",
+      "distancia_cook": 0.045597599921522396,
+      "residuo_estandarizado": -3.7593802895823782,
+      "festivo": 0
+    },
+    {
+      "fecha_utc": "2024-11-28",
+      "distancia_cook": 0.043819725432166265,
+      "residuo_estandarizado": -3.8668119138856833,
+      "festivo": 1
+    }
+  ],
+  "top_zonas": [
+    {
+      "zona_origen": "Midtown Center",
+      "viajes_estimados": 1869687.74514,
+      "duracion_suma": 29001189.065447334,
+      "duracion_media": 15.511247341077137,
+      "cuota_pct": 4.724786758128093
+    },
+    {
+      "zona_origen": "JFK Airport",
+      "viajes_estimados": 1865618.4457,
+      "duracion_suma": 81448409.76928133,
+      "duracion_media": 43.65759244984363,
+      "cuota_pct": 4.714503451646062
+    },
+    {
+      "zona_origen": "Upper East Side South",
+      "viajes_estimados": 1860308.1655,
+      "duracion_suma": 22581494.273861,
+      "duracion_media": 12.138577195242117,
+      "cuota_pct": 4.701084129817523
+    },
+    {
+      "zona_origen": "Upper East Side North",
+      "viajes_estimados": 1683777.94638,
+      "duracion_suma": 20683629.879047334,
+      "duracion_media": 12.284060332014462,
+      "cuota_pct": 4.254984162656872
+    },
+    {
+      "zona_origen": "Midtown East",
+      "viajes_estimados": 1382039.86684,
+      "duracion_suma": 20658311.608459335,
+      "duracion_media": 14.947695869073627,
+      "cuota_pct": 3.492478184672381
+    },
+    {
+      "zona_origen": "Times Sq/Theatre District",
+      "viajes_estimados": 1341771.66772,
+      "duracion_suma": 23418840.502719667,
+      "duracion_media": 17.45367044641361,
+      "cuota_pct": 3.3907185970244473
+    },
+    {
+      "zona_origen": "Penn Station/Madison Sq West",
+      "viajes_estimados": 1320164.64184,
+      "duracion_suma": 22661116.140519667,
+      "duracion_media": 17.16537121380208,
+      "cuota_pct": 3.3361166507766202
+    },
+    {
+      "zona_origen": "Lincoln Square East",
+      "viajes_estimados": 1273777.20578,
+      "duracion_suma": 16690913.942366,
+      "duracion_media": 13.103479844534732,
+      "cuota_pct": 3.2188934704838115
+    },
+    {
+      "zona_origen": "LaGuardia Airport",
+      "viajes_estimados": 1273009.85806,
+      "duracion_suma": 40157818.565146,
+      "duracion_media": 31.545567625331984,
+      "cuota_pct": 3.2169543475710363
+    },
+    {
+      "zona_origen": "Murray Hill",
+      "viajes_estimados": 1144273.24108,
+      "duracion_suma": 16958776.604441665,
+      "duracion_media": 14.820565574386283,
+      "cuota_pct": 2.8916310069360116
+    }
+  ],
+  "hora_maxima": 18,
+  "hora_minima": 4,
+  "ratio_pico_valle": 12.643116897633236,
+  "cuota_manhattan_pct": 88.76159256746384,
+  "top10_zonas_pct": 37.94215075971286,
+  "festivos_dias_utc": 10,
+  "sensibilidad_exploratoria": true
+}

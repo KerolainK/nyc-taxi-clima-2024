@@ -3,10 +3,10 @@
   "filas_finales": 576606,
   "columnas_finales": 44,
   "dias": 365,
-  "graficos_excel": 4,
-  "selectores_excel": 3,
-  "celdas_notebook_ejecutadas": 7,
-  "total_dashboard_conciliado": 39571896.909919865,
+  "graficos_excel": 5,
+  "selectores_excel": 4,
+  "celdas_notebook_ejecutadas": 10,
+  "total_dashboard_conciliado": 39571896.90991967,
   "poblacion_estimada": true,
   "limite": "Prueba de formulas con motor de generacion y del XML exportado; no sesion nativa de Excel."
 }

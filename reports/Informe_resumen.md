@@ -22,4 +22,10 @@ Muestra de 50.000 filas sin limpiar por mes. Ponderación N mensual / 50.000. Un
 
 ## Documentación completa
 
-Consultar Memoria_Taxis_Clima_2024.pdf, registros de calidad, resultados estadísticos y notebook.
+Consultar Memoria_Taxis_Clima_2024_v2.pdf, registros de calidad, resultados estadísticos y notebook.
+
+## Ampliación y razonamiento
+
+El modelo principal tiene fuerte dependencia residual. La variante dinámica estima +0,62% (IC95% -1,21% a +2,49%). Excluir cinco días influyentes da un p nominal de 0,036; se informa como sensibilidad exploratoria, no como confirmación.
+
+La guía Guia_razonamiento.md y las hojas Calculos y Razonamiento de Excel explican para cada paso pregunta, método, motivo y límites. Hay ocho sensibilidades y diagnósticos explícitos.

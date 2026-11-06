@@ -94,3 +94,14 @@ No se ha validado como predictor individual. Los modelos son diarios y explorato
 - Recordar 600.000 filas brutas, 576.606 finales, 44 columnas y 365 días.
 - Distinguir volumen estimado, muestra e información original completa.
 - Comprender por qué no significativo no significa sin efecto y por qué asociación no significa causalidad.
+
+
+## Ampliación: explicar el razonamiento y la sensibilidad
+
+Mostrar la hoja Calculos: cada bloque contiene las fórmulas y, a la derecha, qué pregunta responden y por qué se ponderan. Abrir Razonamiento y seguir un paso completo: pregunta, procedimiento, motivo y límite. No basta con decir qué biblioteca se usó.
+
+En Patrones, cada columna del mapa semanal suma 100%: compara distribuciones horarias, no cantidades de días. Lun-vie significa lunes a viernes y puede incluir festivos. Los filtros de Dashboard solo modifican esa hoja; los modelos de Robustez son anuales y permanecen fijos.
+
+Explicar que el modelo principal tiene autocorrelación residual fuerte. HAC ajusta la incertidumbre pero no elimina esa dependencia. El modelo dinámico añade volumen del día anterior y estima una asociación de lluvia del 0,62%, con intervalo que incluye cero. Cambia la pregunta al condicionar a actividad previa.
+
+Al eliminar cinco días influyentes, un p nominal queda por debajo de 0,05. No ocultamos ese resultado ni lo elegimos como la conclusión: mostramos ocho especificaciones. Esto revela sensibilidad y aconseja prudencia, no una afirmación categórica de presencia o ausencia de asociación.
